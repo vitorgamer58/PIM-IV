@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include "types.h"
+#include "userRepository.h"
 
 void renderizaMenuEDireciona()
 {
@@ -28,6 +30,8 @@ void renderizaMenuEDireciona()
             break;
         case 4:
             break;
+        case 5:
+            return;
         default:
             printf("Opcao invalida! Tente novamente.\n");
         }
@@ -35,9 +39,9 @@ void renderizaMenuEDireciona()
     while(escolha != 5);
 }
 
-bool checarUsuario(const char* usuario, const char* senha)
+bool checarSenha(const char* senhaDoUsuario, const char* senhaDigitada)
 {
-    if (strcmp(usuario, "teste") == 0 && strcmp(senha, "teste") == 0)
+    if (strcmp(senhaDoUsuario, senhaDigitada) == 0)
     {
         return true;
     }
@@ -45,35 +49,45 @@ bool checarUsuario(const char* usuario, const char* senha)
     return false;
 }
 
-void logar(char* usuario, char* senha)
+void logar(char* nomeDeUsuario, char* senha)
 {
+    Usuario usuario;
+
     printf("Digite seu usuario:");
-    scanf("%s", usuario);
+    scanf("%s", nomeDeUsuario);
 
     printf("Digite sua senha:");
     scanf("%s", senha);
 
-    if(checarUsuario(usuario, senha))
+    usuario = buscarUsuario(nomeDeUsuario);
+
+    if(!usuario.isValid) {
+        printf("Usuario nao encontrado\n");
+        return;
+    }
+
+    if(checarSenha(usuario.senha, senha))
     {
         printf("Logado com sucesso!!");
         renderizaMenuEDireciona();
     }
+
     else
     {
         printf("Senha invalida!\n");
-        memset(usuario, 0, sizeof(usuario));
+        memset(nomeDeUsuario, 0, sizeof(nomeDeUsuario));
         memset(senha, 0, sizeof(senha));
-        logar(usuario, senha);
+        logar(nomeDeUsuario, senha);
     }
 }
 
 int main()
 {
-    char usuario[50], senha[50];
+    char nomeDeUsuario[50], senha[50];
 
     printf("Bem vindo ao sistema\n");
 
-    logar(usuario, senha);
+    logar(nomeDeUsuario, senha);
 
     return 0;
 }
