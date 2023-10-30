@@ -1,7 +1,24 @@
 # depslib dependency file v1.0
-1698625678 source:d:\documentos\programacao\pim-iv\main.c
+1698667884 source:d:\documentos\programacao\pim-iv\main.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
 	<string.h>
+
+1698665035 source:d:\documentos\programacao\pim-iv\filehelper.c
+	<stdio.h>
+
+1698668028 source:d:\documentos\programacao\pim-iv\types.h
+	<stdbool.h>
+
+1698668652 source:d:\documentos\programacao\pim-iv\usuariorepository.c
+	<stdio.h>
+	<stdbool.h>
+	"types.h"
+	"userRepository.h"
+
+1698668028 d:\documentos\programacao\pim-iv\types.h
+	<stdbool.h>
+
+1698668638 d:\documentos\programacao\pim-iv\userrepository.h
 
