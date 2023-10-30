@@ -20,7 +20,7 @@ void renderizaMenuEDireciona()
         printf("Escolha uma opcao: ");
         scanf("%d", &escolha);
 
-        switch(escolha)
+        switch (escolha)
         {
         case 1:
             break;
@@ -35,11 +35,14 @@ void renderizaMenuEDireciona()
         default:
             printf("Opcao invalida! Tente novamente.\n");
         }
-    }
-    while(escolha != 5);
+    } while (escolha != 5);
 }
 
+<<<<<<< Updated upstream
 bool checarSenha(const char* senhaDoUsuario, const char* senhaDigitada)
+=======
+bool checarUsuario(const char *usuario, const char *senha)
+>>>>>>> Stashed changes
 {
     if (strcmp(senhaDoUsuario, senhaDigitada) == 0)
     {
@@ -49,7 +52,11 @@ bool checarSenha(const char* senhaDoUsuario, const char* senhaDigitada)
     return false;
 }
 
+<<<<<<< Updated upstream
 void logar(char* nomeDeUsuario, char* senha)
+=======
+void logar(char *usuario, char *senha)
+>>>>>>> Stashed changes
 {
     Usuario usuario;
 
@@ -59,6 +66,7 @@ void logar(char* nomeDeUsuario, char* senha)
     printf("Digite sua senha:");
     scanf("%s", senha);
 
+<<<<<<< Updated upstream
     usuario = buscarUsuario(nomeDeUsuario);
 
     if(!usuario.isValid) {
@@ -67,6 +75,9 @@ void logar(char* nomeDeUsuario, char* senha)
     }
 
     if(checarSenha(usuario.senha, senha))
+=======
+    if (checarUsuario(usuario, senha))
+>>>>>>> Stashed changes
     {
         printf("Logado com sucesso!!");
         renderizaMenuEDireciona();
