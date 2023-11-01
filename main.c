@@ -11,6 +11,7 @@ void renderizaMenuEDireciona()
 
     do
     {
+        system("cls");
         printf("Menu:\n");
         printf("1. Cadastrar novo usuario\n");
         printf("2. Cadastrar industria\n");
