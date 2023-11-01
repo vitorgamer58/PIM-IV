@@ -31,7 +31,15 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="fileHelper.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="types.h" />
+		<Unit filename="userRepository.h" />
+		<Unit filename="usuarioRepository.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
