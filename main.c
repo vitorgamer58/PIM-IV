@@ -23,10 +23,8 @@ void cadastrarUsuario()
 
     if (usuarioFoiCadastrado)
     {
-      printf("----- NOVO USUARIO CADASTRADO COM SUCESSO! -----\n");
+        printf("----- NOVO USUARIO CADASTRADO COM SUCESSO! -----\n");
     }
-
-
     printf("\n");
     system ("pause");
 
@@ -70,6 +68,7 @@ void renderizaMenuEDireciona()
             printf("Opcao invalida! Tente novamente.\n");
         }
     }
+
     while(escolha != 5);
 }
 
@@ -97,19 +96,31 @@ void logar(char* nomeDeUsuario, char* senha)
 
     if(!usuario.isValid)
     {
-        printf("Usuario nao encontrado\n");
+        printf("\n");
+        printf("--------- ERRO: Usuario nao encontrado ---------\n");
+        printf("\n");
+        printf("                TENTE NOVAMENTE\n");
+        printf("\n");
+        system("pause");
+        system("cls");
+        main();
+        logar(nomeDeUsuario, senha);
+
         return;
     }
 
     if(checarSenha(usuario.senha, senha))
     {
+        printf("\n");
         printf("Logado com sucesso!!");
         renderizaMenuEDireciona();
     }
 
     else
     {
-        printf("Senha invalida!\n");
+        printf("\n");
+        printf("Senha invalida! Tente novamente!\n");
+        printf("\n");
         memset(nomeDeUsuario, 0, sizeof(nomeDeUsuario));
         memset(senha, 0, sizeof(senha));
         logar(nomeDeUsuario, senha);
