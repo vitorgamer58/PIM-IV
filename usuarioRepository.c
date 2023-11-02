@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 #include "types.h"
 #include "userRepository.h"
 
@@ -26,4 +27,26 @@ Usuario buscarUsuario(const char *nomeDeUsuario)
 
     fclose(Ponteiro);
     return usuario;
+}
+
+bool inserirUsuario(const char* nomeDeUsuario, const char* senha)
+{
+    FILE *ArquivoUsuarios=abrirArquivoParaGravacao("usuarios.txt");
+
+    if(ArquivoUsuarios==NULL)
+    {
+        return false;
+    }
+
+    char usuarioSenha[101];
+
+    strcpy(usuarioSenha, nomeDeUsuario);
+    strcat(usuarioSenha, ",");
+    strcat(usuarioSenha, senha);
+
+    fprintf(ArquivoUsuarios, "%s\n", usuarioSenha);
+
+    fclose(ArquivoUsuarios);
+
+    return true;
 }
