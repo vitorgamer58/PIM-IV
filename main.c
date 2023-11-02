@@ -19,9 +19,18 @@ void cadastrarUsuario()
     printf("Agora digite a senha: ");
     scanf("%s", senha);
     printf("\n");
-    printf("----- NOVO USUARIO CADASTRADO COM SUCESSO! -----\n");
+    bool usuarioFoiCadastrado=inserirUsuario(nomeDeUsuario, senha);
+
+    if (usuarioFoiCadastrado)
+    {
+      printf("----- NOVO USUARIO CADASTRADO COM SUCESSO! -----\n");
+    }
+
+
     printf("\n");
     system ("pause");
+
+
 
 
 }

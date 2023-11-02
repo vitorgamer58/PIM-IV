@@ -3,4 +3,6 @@
 
 Usuario buscarUsuario(const char *nomeDeUsuario);
 
+bool inserirUsuario(const char* nomeDeUsuario, const char* senha);
+
 #endif // USERREPOSITORY_H_INCLUDED
