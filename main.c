@@ -6,6 +6,7 @@
 #include <locale.h>
 #include "types.h"
 #include "userRepository.h"
+#include "verificadores.c"
 
 void cadastrarUsuario() // TELA DE CADASTRO DE USUÁRIOS
 {
@@ -53,8 +54,7 @@ void cadastrarIndustria() // TELA DE CADASTRO DE INDUSTRIAS
     scanf("%s", nomeDoResp);
     printf("\n");
 
-    printf("- Qual o CPF (apenas números) do responsável pela empresa? ");
-    scanf("%d", cpf);
+    verificadorCPF(); // Apenas testando (código em verificadores.c)
     printf("\n");
 
     printf("---> Qual o endereço do responsável pela empresa?\n");
@@ -64,8 +64,7 @@ void cadastrarIndustria() // TELA DE CADASTRO DE INDUSTRIAS
     scanf("%s", enderecoDoResp);
     printf("\n");
 
-    printf("- Qual o número de telefone/celular do responsável pela empresa? ");
-    scanf("%d", &telDoResp);
+    verificadorTelefone(); // Apenas testando (código em verificadores.c)
     printf(" \n");
 
 
@@ -153,7 +152,10 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
         case 5:
             return;
         default:
-            printf("Opção inválida! Tente novamente.\n");
+            printf("\n");
+            printf("---------  Opção inválida! Tente novamente.  ---------\n");
+            printf("\n");
+            system("pause");
         }
     }
 
