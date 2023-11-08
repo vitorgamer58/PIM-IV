@@ -7,6 +7,7 @@
 #include "types.h"
 #include "userRepository.h"
 #include "verificadores.c"
+#include "empresaRepositorio.h"
 
 void cadastrarUsuario() // TELA DE CADASTRO DE USUÁRIOS
 {
@@ -32,14 +33,11 @@ void cadastrarUsuario() // TELA DE CADASTRO DE USUÁRIOS
     printf("\n");
     system ("pause");
     renderizaMenuEDireciona();
-
 }
 
 void cadastrarIndustria() // TELA DE CADASTRO DE INDUSTRIAS
 {
-    char nomeDoResp[50], enderecoDoResp[100], nomeDaEmpresa[50], razaoSocial[50], nomeFantasia[50];
-    char enderecoDaEmpresa[100], emailEmpresa[30];
-    int cpf[12], cnpj[15], telDoResp[15], telDaEmpresa[15], aberturaEmpresa[11];
+    Empresa empresa;
 
     system("cls");
     printf("------------------------------------------------------\n");
@@ -47,76 +45,66 @@ void cadastrarIndustria() // TELA DE CADASTRO DE INDUSTRIAS
     printf("------------------------------------------------------\n");
     printf("  Iniciando com os dados do responsável pela empresa.\n");
     printf("\n");
+    getchar();
 
     // FORMULÁRIO COM BASE NAS INFORMAÇÕES SUGERIDAS DO PIM
 
     printf("- Qual o nome do responsável pela empresa? ");
-    scanf("%s", nomeDoResp);
+    fgets(empresa.nomeDoResponsavel, sizeof(empresa.nomeDoResponsavel), stdin);
+    empresa.nomeDoResponsavel[strcspn(empresa.nomeDoResponsavel, "\n")] = 0; // Remove o '\n'
     printf("\n");
 
-    verificadorCPF(); // Apenas testando (código em verificadores.c)
+    printf("- Qual o documento do responsável pela empresa? ");
+    fgets(empresa.documentoDoResponsavel, sizeof(empresa.documentoDoResponsavel), stdin);
+    empresa.documentoDoResponsavel[strcspn(empresa.documentoDoResponsavel, "\n")] = 0;
     printf("\n");
-
-    printf("---> Qual o endereço do responsável pela empresa?\n");
-    printf("SIGA O PADRÃO: RUA, NÚMERO, BAIRRO, CIDADE, ESTADO e CEP\n");
-    printf("\n");
-    printf("- Digite aqui: ");
-    scanf("%s", enderecoDoResp);
-    printf("\n");
-
-    verificadorTelefone(); // Apenas testando (código em verificadores.c)
-    printf(" \n");
-
-
-    printf("------------------------------------------------------\n");
-    printf("                DADOS CADASTRADOS!\n");
-    printf("------------------------------------------------------\n");
-    printf("       Agora vamos cadastrar os dados da empresa.\n");
-    printf("\n");
-
-    printf("- Qual o nome empresa? ");
-    scanf("%s", nomeDaEmpresa);
-    printf(" \n");
-
-    printf("- Qual o CNPJ (apenas números) da empresa? ");
-    scanf("%d", &cnpj);
-    printf(" \n");
 
     printf("- Qual a razão social da empresa? ");
-    scanf("%s", razaoSocial);
-    printf(" \n");
+    fgets(empresa.razaoSocial, sizeof(empresa.razaoSocial), stdin);
+    empresa.razaoSocial[strcspn(empresa.razaoSocial, "\n")] = 0;
+    printf("\n");
 
     printf("- Qual o nome fantasia da empresa? ");
-    scanf("%s", nomeFantasia);
-    printf(" \n");
+    fgets(empresa.nomeFantasia, sizeof(empresa.nomeFantasia), stdin);
+    empresa.nomeFantasia[strcspn(empresa.nomeFantasia, "\n")] = 0;
+    printf("\n");
+
+    printf("- Qual o CNPJ (apenas números) da empresa? ");
+    fgets(empresa.cnpj, sizeof(empresa.cnpj), stdin);
+    empresa.cnpj[strcspn(empresa.cnpj, "\n")] = 0;
+    printf("\n");
+    getchar();
 
     printf("- Qual o número de telefone da empresa? ");
-    scanf("%d", &telDaEmpresa);
-    printf(" \n");
+    fgets(empresa.telefoneDaEmpresa, sizeof(empresa.telefoneDaEmpresa), stdin);
+    empresa.telefoneDaEmpresa[strcspn(empresa.telefoneDaEmpresa, "\n")] = 0;
+    printf("\n");
 
     printf("---> Qual o endereço da empresa?\n");
     printf("SIGA O PADRÃO: RUA, NÚMERO, BAIRRO, CIDADE, ESTADO e CEP\n");
     printf("\n");
     printf("- Digite aqui: ");
-    scanf("%s", enderecoDaEmpresa);
-    printf(" \n");
+    getchar();
+    fgets(empresa.enderecoDaEmpresa, sizeof(empresa.enderecoDaEmpresa), stdin);
+    empresa.enderecoDaEmpresa[strcspn(empresa.enderecoDaEmpresa, "\n")] = 0;
+    printf("\n");
 
     printf("- Qual o e-mail da empresa? ");
-    scanf("%s", emailEmpresa);
-    printf(" \n");
-
-    printf("- Qual a data de abertura da empresa? ");
-    scanf("%d", &aberturaEmpresa);
+    fgets(empresa.emailDaEmpresa, sizeof(empresa.emailDaEmpresa), stdin);
+    empresa.emailDaEmpresa[strcspn(empresa.emailDaEmpresa, "\n")] = 0;
     printf("\n");
+
+    // Aqui você deverá ter a função inserirEmpresa() definida em outra parte do seu código
+    inserirEmpresa(empresa);
 
     printf("------------------------------------------------------\n");
     printf("          INDÚSTRIA CADASTRADA COM SUCESSO!\n");
     printf("------------------------------------------------------\n");
 
     printf("\n");
-    system("pause");
-
-
+    Sleep(1200); // Pausa o programa por 1200 milissegundos
+    // Aqui você deverá ter a função renderizaMenuEDireciona() definida em outra parte do seu código
+    renderizaMenuEDireciona();
 }
 
 void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
@@ -155,10 +143,8 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
             printf("\n");
             printf("---------  Opção inválida! Tente novamente.  ---------\n");
             printf("\n");
-            system("pause");
         }
     }
-
     while(escolha != 5);
 }
 
@@ -193,7 +179,6 @@ void logar(char* nomeDeUsuario, char* senha) // FUNÇÃO E TELAS DE LOGIN
         printf("\n");
         system("pause");
         system("cls");
-        main();
         logar(nomeDeUsuario, senha);
 
         return;
