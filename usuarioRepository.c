@@ -50,3 +50,4 @@ bool inserirUsuario(const char* nomeDeUsuario, const char* senha)
 
     return true;
 }
+

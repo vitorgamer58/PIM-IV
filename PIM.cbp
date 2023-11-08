@@ -37,10 +37,21 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="testecpf.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="types.h" />
 		<Unit filename="userRepository.h" />
 		<Unit filename="usuarioRepository.c">
 			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="verificadores.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="verificadores.h">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Extensions>
 			<lib_finder disable_auto="1" />
