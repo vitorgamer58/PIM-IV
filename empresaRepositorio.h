@@ -1,0 +1,6 @@
+#ifndef EMPRESAREPOSITORIO_H_INCLUDED
+#define EMPRESAREPOSITORIO_H_INCLUDED
+
+bool inserirEmpresa(Empresa empresa);
+
+#endif // EMPRESAREPOSITORIO_H_INCLUDED
