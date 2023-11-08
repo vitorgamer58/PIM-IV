@@ -6,7 +6,6 @@
 #include <locale.h>
 #include "types.h"
 #include "userRepository.h"
-#include "verificadores.c"
 #include "empresaRepositorio.h"
 
 void cadastrarUsuario() // TELA DE CADASTRO DE USUÁRIOS
