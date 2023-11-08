@@ -15,21 +15,21 @@ bool inserirEmpresa(Empresa empresa)
     char empresaLinha[1000];
 
     strcpy(empresaLinha, empresa.nomeDoResponsavel);
-    strcat(empresaLinha, ",");
+    strcat(empresaLinha, ";");
     strcat(empresaLinha, empresa.documentoDoResponsavel);
-    strcat(empresaLinha, ",");
+    strcat(empresaLinha, ";");
     strcat(empresaLinha, empresa.nomeFantasia);
-    strcat(empresaLinha, ",");
+    strcat(empresaLinha, ";");
     strcat(empresaLinha, empresa.razaoSocial);
-    strcat(empresaLinha, ",");
+    strcat(empresaLinha, ";");
     strcat(empresaLinha, empresa.emailDaEmpresa);
-    strcat(empresaLinha, ",");
+    strcat(empresaLinha, ";");
     strcat(empresaLinha, empresa.telefoneDaEmpresa);
-    strcat(empresaLinha, ",");
+    strcat(empresaLinha, ";");
     strcat(empresaLinha, empresa.enderecoDaEmpresa);
-    strcat(empresaLinha, ",");
+    strcat(empresaLinha, ";");
     strcat(empresaLinha, empresa.documentoDoResponsavel);
-    strcat(empresaLinha, ",");
+    strcat(empresaLinha, ";");
     strcat(empresaLinha, empresa.cnpj);
 
     fprintf(ArquivoEmpresas, "%s\n", empresaLinha);
