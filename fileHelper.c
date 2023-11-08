@@ -29,9 +29,9 @@ FILE* abrirOuCriarArquivo(const char* nomeDoArquivo)
     return Ponteiro;
 }
 
-FILE* abrirArquivoParaGravacao(const char* nomeDoArquivo, const char* linha)
+FILE* abrirArquivoParaGravacao(const char* nomeDoArquivo)
 {
-    FILE *Ponteiro = fopen(nomeDoArquivo, "a"); // Abre o arquivo para anexar
+    FILE *Ponteiro = fopen(nomeDoArquivo, "a");
 
     if (Ponteiro == NULL)
     {
