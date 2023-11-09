@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="empresaRepositorio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="empresaRepositorio.h" />
 		<Unit filename="fileHelper.c">
 			<Option compilerVar="CC" />
 		</Unit>
