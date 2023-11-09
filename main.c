@@ -167,7 +167,8 @@ void logar(char* nomeDeUsuario, char* senha) // FUNÇÃO E TELAS DE LOGIN
 
         system("pause");
         system("cls");
-        main();
+        telaInicial();
+        logar(nomeDeUsuario, senha);
 
         return;
     }
@@ -198,17 +199,20 @@ void logar(char* nomeDeUsuario, char* senha) // FUNÇÃO E TELAS DE LOGIN
     }
 }
 
-int main() // TELA INCIAL
+int main() // TELA INCIAL E LOGIN
 {
     char nomeDeUsuario[50], senha[50];
-
-    setlocale(LC_ALL, "Portuguese");
-    printf("------------------------------------------------------\n");
-    printf("          | STARTUP DE SOLUÇÕES AMBIENTAIS |\n");
-    printf("------------------------------------------------------\n");
-    printf(" Olá! Efetue login para ter acesso ao nosso sistema.\n\n");
-
+    telaInicial();
     logar(nomeDeUsuario, senha);
 
     return 0;
 }
+
+void telaInicial()
+    {
+        setlocale(LC_ALL, "Portuguese");
+        printf("------------------------------------------------------\n");
+        printf("          | STARTUP DE SOLUÇÕES AMBIENTAIS |\n");
+        printf("------------------------------------------------------\n");
+        printf(" Olá! Efetue login para ter acesso ao nosso sistema.\n\n");
+    }
