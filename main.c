@@ -64,7 +64,6 @@ void cadastrarIndustria() // TELA DE CADASTRO DE INDUSTRIAS
     printf("\n- Qual o CNPJ (apenas números) da empresa? ");
     fgets(empresa.cnpj, sizeof(empresa.cnpj), stdin);
     empresa.cnpj[strcspn(empresa.cnpj, "\n")] = 0;
-    getchar();
 
     printf("\n- Qual o número de telefone da empresa? ");
     fgets(empresa.telefoneDaEmpresa, sizeof(empresa.telefoneDaEmpresa), stdin);
