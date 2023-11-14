@@ -2,10 +2,11 @@
 #include <stdbool.h>
 #include <string.h>
 #include "types.h"
+#include "fileHelper.h"
 
 bool inserirEmpresa(Empresa empresa)
 {
-    FILE *ArquivoEmpresas=abrirArquivoParaGravacao("empresas.txt");
+    FILE *ArquivoEmpresas = abrirArquivoParaGravacao("empresas.txt");
 
     if(ArquivoEmpresas == NULL)
     {
@@ -28,8 +29,6 @@ bool inserirEmpresa(Empresa empresa)
     strcat(empresaLinha, ";");
     strcat(empresaLinha, empresa.enderecoDaEmpresa);
     strcat(empresaLinha, ";");
-    strcat(empresaLinha, empresa.documentoDoResponsavel);
-    strcat(empresaLinha, ";");
     strcat(empresaLinha, empresa.cnpj);
 
     fprintf(ArquivoEmpresas, "%s\n", empresaLinha);
@@ -39,32 +38,39 @@ bool inserirEmpresa(Empresa empresa)
     return true;
 }
 
-int exibirDadosIndustria() // Esboço da função de exibição de dados
+Empresa buscarEmpresa(const char *cnpj)
 {
-    // Nome do arquivo a ser lido.
-    char nomeArquivo[] = "usuarios.txt";
+    Empresa empresa;
+    empresa.isValid = false;
 
-    // Abre o arquivo para leitura.
-    FILE *arquivo = fopen(nomeArquivo, "r");
+    FILE *ArquivoEmpresas = abrirOuCriarArquivo("empresas.txt");
 
-    // Verifica se o arquivo foi aberto com sucesso.
-    if (arquivo == NULL)
+    if (ArquivoEmpresas == NULL)
     {
-        printf("Erro ao abrir o arquivo.\n");
-        return 1;
+        // Tratamento de erro: arquivo nï¿½o pï¿½de ser aberto
+        return empresa;
     }
 
-    // Lê e exibe os dados do arquivo linha por linha.
-    char linha[100]; // Uma linha pode ter até 100 caracteres, ajuste conforme suas necessidades.
-
-    while (fgets(linha, sizeof(linha), arquivo) != NULL)
+    while(fscanf(ArquivoEmpresas, "%100[^;];%100[^;];%100[^;];%100[^;];%100[^;];%100[^;];%200[^;];%15[^\n]\n",
+                 empresa.nomeDoResponsavel,
+                 empresa.documentoDoResponsavel,
+                 empresa.nomeFantasia,
+                 empresa.razaoSocial,
+                 empresa.emailDaEmpresa,
+                 empresa.telefoneDaEmpresa,
+                 empresa.enderecoDaEmpresa,
+                 empresa.cnpj
+                ) != EOF)
     {
-        printf("%s", linha);
+        if(strcmp(cnpj, empresa.cnpj) == 0)
+        {
+            empresa.isValid = true;
+            fclose(ArquivoEmpresas);
+            return empresa;
+        }
     }
 
-        system("pause");
-    // Fecha o arquivo.
-    fclose(arquivo);
+    fclose(ArquivoEmpresas);
 
-    return 0;
+    return empresa;
 }

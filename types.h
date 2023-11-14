@@ -21,4 +21,9 @@ typedef struct {
     bool isValid;
 } Empresa;
 
+typedef struct {
+    char cnpj[50];
+    int toneladas;
+} Residuo;
+
 #endif // TYPES_H_INCLUDED
