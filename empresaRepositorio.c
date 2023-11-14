@@ -47,7 +47,7 @@ Empresa buscarEmpresa(const char *cnpj)
 
     if (ArquivoEmpresas == NULL)
     {
-        // Tratamento de erro: arquivo não pôde ser aberto
+        // Tratamento de erro: arquivo nï¿½o pï¿½de ser aberto
         return empresa;
     }
 
