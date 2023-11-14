@@ -1,0 +1,6 @@
+#ifndef RESIDUOSREPOSITORIO_H_INCLUDED
+#define RESIDUOSREPOSITORIO_H_INCLUDED
+
+bool inserirResiduo(Residuo residuo);
+
+#endif // RESIDUOSREPOSITORIO_H_INCLUDED

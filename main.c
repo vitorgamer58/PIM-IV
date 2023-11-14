@@ -7,6 +7,37 @@
 #include "types.h"
 #include "userRepository.h"
 #include "empresaRepositorio.h"
+#include "residuosRepositorio.h"
+
+void cadastrarResiduos()
+{
+    Residuo residuo;
+    Empresa empresa;
+    char cnpj[15];
+
+    system("cls");
+    printf("Digite o CNPJ (Apenas números): ");
+    getchar();
+    fgets(cnpj, sizeof(cnpj), stdin);
+    cnpj[strcspn(cnpj, "\n")] = 0; // Remove o caractere de nova linha
+
+    strcpy(residuo.cnpj, cnpj);
+
+    empresa = buscarEmpresa(cnpj);
+
+    if(empresa.isValid == false)
+    {
+        printf("Empresa não encontrada !!");
+        return;
+    }
+
+    printf("Empresa: ");
+    printf(empresa.nomeFantasia);
+    printf("\nDigite a quantidade de residuos em toneladas (numero inteiro): ");
+    scanf("%d", &residuo.toneladas);
+
+    inserirResiduo(residuo);
+}
 
 void cadastrarUsuario() // TELA DE CADASTRO DE USUÁRIOS
 {
@@ -104,9 +135,10 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
 
         printf("1. Cadastrar novo usuário\n");
         printf("2. Cadastrar indústria\n");
-        printf("3. Exibir dados da indústria\n");
-        printf("4. Exibir relatórios\n");
-        printf("5. Sair\n");
+        printf("3. Cadastrar resíduos\n");
+        printf("4. Exibir dados da indústria\n");
+        printf("5. Exibir relatórios\n");
+        printf("6. Sair\n");
 
         printf("\nEscolha uma opção: ");
         scanf("%d", &escolha);
@@ -120,6 +152,7 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
             cadastrarIndustria();
             break;
         case 3:
+            cadastrarResiduos();
             break;
         case 4:
             break;
@@ -134,7 +167,7 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
 
         }
     }
-    while(escolha != 5);
+    while(escolha != 6);
 }
 
 bool checarSenha(const char* senhaDoUsuario, const char* senhaDigitada)
@@ -208,10 +241,10 @@ int main() // TELA INCIAL E LOGIN
 }
 
 void telaInicial()
-    {
-        setlocale(LC_ALL, "Portuguese");
-        printf("------------------------------------------------------\n");
-        printf("          | STARTUP DE SOLUÇÕES AMBIENTAIS |\n");
-        printf("------------------------------------------------------\n");
-        printf(" Olá! Efetue login para ter acesso ao nosso sistema.\n\n");
-    }
+{
+    setlocale(LC_ALL, "Portuguese");
+    printf("------------------------------------------------------\n");
+    printf("          | STARTUP DE SOLUÇÕES AMBIENTAIS |\n");
+    printf("------------------------------------------------------\n");
+    printf(" Olá! Efetue login para ter acesso ao nosso sistema.\n\n");
+}
