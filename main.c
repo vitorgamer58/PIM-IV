@@ -7,6 +7,61 @@
 #include "types.h"
 #include "userRepository.h"
 #include "empresaRepositorio.h"
+<<<<<<< Updated upstream
+=======
+#include "residuosRepositorio.h"
+
+void cadastrarResiduos()
+{
+    Residuo residuo;
+    Empresa empresa;
+    char cnpj[15];
+    int escolha;
+
+    system("cls");
+    printf("------------------------------------------------------\n");
+    printf("                 CADASTRO DE RESÍDUOS\n");
+    printf("------------------------------------------------------\n\n");
+    printf("Digite o CNPJ (apenas números) da empresa: ");
+    getchar();
+    fgets(cnpj, sizeof(cnpj), stdin);
+    cnpj[strcspn(cnpj, "\n")] = 0; // Remove o caractere de nova linha
+
+    strcpy(residuo.cnpj, cnpj);
+
+    empresa = buscarEmpresa(cnpj);
+
+    if(!empresa.isValid)
+    {
+        printf("\n-------------- Empresa não encontrada!! --------------\n\n");
+        printf("Tecle [1] para tentar novamente\n");
+        printf("Tecle [2] para voltar ao menu principal\n");
+        scanf("%d", &escolha);
+
+        switch(escolha)
+        {
+        case 1:
+            cadastrarResiduos();
+            break;
+        case 2:
+            telaInicial();
+            break;
+        }
+        return;
+    }
+
+    printf("Empresa cadastrada: ");
+    printf(empresa.nomeFantasia);
+    printf("\nDigite a quantidade de residuos em toneladas (numero inteiro): ");
+    scanf("%d", &residuo.toneladas);
+
+    inserirResiduo(residuo);
+
+    printf("\n---------- RESÍDUO CADASTRADO COM SUCESSO!! ----------\n\n");
+    Sleep(2000);
+
+}
+>>>>>>> Stashed changes
 
 void cadastrarUsuario() // TELA DE CADASTRO DE USUÁRIOS
 {
@@ -125,7 +180,10 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
         case 4:
             break;
         case 5:
+            break;
+        case 6:
             printf("\n-------------------------------> Saindo do programa...\n");
+            printf("Digite qualquer tecla para fechar esta janela <-------\n\n");
             exit(0);
             break;
         default:

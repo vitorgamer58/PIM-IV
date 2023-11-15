@@ -17,7 +17,7 @@ typedef struct {
     char emailDaEmpresa[100];
     char telefoneDaEmpresa[50];
     char enderecoDaEmpresa[200];
-    char cnpj[15];
+    char cnpj[16];
     bool isValid;
 } Empresa;
 
