@@ -23,8 +23,6 @@ bool inserirResiduo(Residuo residuo)
     strcat(residuosLinha, ";");
     strcat(residuosLinha, toneladasStr);
 
-    printf("CAIU AQUI !!");
-
     fprintf(ArquivoResiduos, "%s\n", residuosLinha);
 
     fclose(ArquivoResiduos);
