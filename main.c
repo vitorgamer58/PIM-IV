@@ -9,14 +9,45 @@
 #include "empresaRepositorio.h"
 #include "residuosRepositorio.h"
 
+void relatorios()
+{
+    int escolha;
+
+    system("cls");
+    printf("------------------------------------------------------\n");
+    printf("                      RELATÓRIOS\n");
+    printf("------------------------------------------------------\n\n");
+
+    printf("Escolha uma das opções abaixo:\n\n");
+    printf("[1] relatório de resíduos por empresa\n");
+    printf("[2] outro tipo de relatório\n");
+    printf("[3] voltar ao menu principal\n");
+    scanf("%d", &escolha);
+
+    switch (escolha)
+    {
+    case 1:
+        break;
+    case 2:
+        break;
+    case 3:
+        telaInicial();
+        break;
+    }
+}
+
 void cadastrarResiduos()
 {
     Residuo residuo;
     Empresa empresa;
     char cnpj[15];
+    int escolha;
 
     system("cls");
-    printf("Digite o CNPJ (Apenas números): ");
+    printf("------------------------------------------------------\n");
+    printf("                 CADASTRO DE RESÍDUOS\n");
+    printf("------------------------------------------------------\n\n");
+    printf("Digite o CNPJ (apenas números) da empresa: ");
     getchar();
     fgets(cnpj, sizeof(cnpj), stdin);
     cnpj[strcspn(cnpj, "\n")] = 0; // Remove o caractere de nova linha
@@ -25,18 +56,35 @@ void cadastrarResiduos()
 
     empresa = buscarEmpresa(cnpj);
 
-    if(empresa.isValid == false)
+    if(!empresa.isValid)
     {
-        printf("Empresa não encontrada !!");
+        printf("\n-------------- Empresa não encontrada!! --------------\n\n");
+        printf("Tecle [1] para tentar novamente\n");
+        printf("Tecle [2] para voltar ao menu principal\n");
+        scanf("%d", &escolha);
+
+        switch(escolha)
+        {
+        case 1:
+            cadastrarResiduos();
+            break;
+        case 2:
+            telaInicial();
+            break;
+        }
         return;
     }
 
-    printf("Empresa: ");
+    printf("Empresa cadastrada: ");
     printf(empresa.nomeFantasia);
-    printf("\nDigite a quantidade de residuos em toneladas (numero inteiro): ");
+    printf("\nDigite a quantidade de resíduos em toneladas (numero inteiro): ");
     scanf("%d", &residuo.toneladas);
 
     inserirResiduo(residuo);
+
+    printf("\n---------- RESÍDUO CADASTRADO COM SUCESSO!! ----------\n\n");
+    Sleep(2000);
+
 }
 
 void cadastrarUsuario() // TELA DE CADASTRO DE USUÁRIOS
@@ -157,7 +205,11 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
         case 4:
             break;
         case 5:
+            relatorios();
+            break;
+        case 6:
             printf("\n-------------------------------> Saindo do programa...\n");
+            printf("Digite qualquer tecla para fechar esta janela <-------\n\n");
             exit(0);
             break;
         default:
