@@ -3,10 +3,10 @@
 
 #include "../types.h"
 
-struct
+typedef struct
 {
     Residuo residuo;
-    struct listaDeResiduos * proximo;
-} listaDeResiduos;
+    struct ListaDeResiduos * proximo;
+} ListaDeResiduos;
 
 #endif // LISTAS_H_INCLUDED
