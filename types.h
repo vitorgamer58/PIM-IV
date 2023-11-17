@@ -22,8 +22,8 @@ typedef struct {
 } Empresa;
 
 typedef struct {
-    char cnpj[50];
-    double toneladas;
+    char cnpj[15];
+    int toneladas;
 } Residuo;
 
 #endif // TYPES_H_INCLUDED
