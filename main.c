@@ -9,6 +9,41 @@
 #include "empresaRepositorio.h"
 #include "residuosRepositorio.h"
 
+void relatorioResiduosPorEmpresas()
+{
+    char cnpj[15];
+    ListaDeResiduos *listaDeResiduos;
+
+    printf("Digite o CNPJ (apenas números) da empresa: ");
+    getchar();
+    fgets(cnpj, sizeof(cnpj), stdin);
+    cnpj[strcspn(cnpj, "\n")] = 0; // Remove o caractere de nova linha
+
+    listaDeResiduos = buscarResiduoPorEmpresa(cnpj);
+
+    if(listaDeResiduos->proximo == NULL) {
+        printf("UM ELEMENTO!");
+    }
+
+    if(listaDeResiduos == NULL)
+    {
+        printf("\n-------------- Residuos não encontrados para este CNPJ!! --------------\n\n");
+        Sleep(2000);
+        return;
+    }
+
+    int contador = 0;
+
+    while (listaDeResiduos != NULL) {
+        //printf("CNPJ: %s, Toneladas: %d\n", listaDeResiduos->residuo.cnpj, listaDeResiduos->residuo.toneladas);
+        printf("%s\n", contador);
+        contador =+ 1;
+        listaDeResiduos = listaDeResiduos->proximo;
+    }
+
+    Sleep(1000);
+}
+
 void relatorios()
 {
     int escolha;
@@ -27,7 +62,7 @@ void relatorios()
     switch (escolha)
     {
     case 1:
-        break;
+        relatorioResiduosPorEmpresas();
     case 2:
         break;
     case 3:
