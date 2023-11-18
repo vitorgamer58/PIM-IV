@@ -22,7 +22,7 @@ typedef struct {
 } Empresa;
 
 typedef struct {
-    char cnpj[15];
+    char cnpj[16];
     int toneladas;
 } Residuo;
 
