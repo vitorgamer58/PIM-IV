@@ -11,7 +11,7 @@
 
 void relatorioResiduosPorEmpresas()
 {
-    char cnpj[15];
+    char cnpj[16];
     ListaDeResiduos *listaDeResiduos;
 
     printf("Digite o CNPJ (apenas números) da empresa: ");
@@ -32,16 +32,12 @@ void relatorioResiduosPorEmpresas()
         return;
     }
 
-    int contador = 0;
-
     while (listaDeResiduos != NULL) {
-        //printf("CNPJ: %s, Toneladas: %d\n", listaDeResiduos->residuo.cnpj, listaDeResiduos->residuo.toneladas);
-        printf("%s\n", contador);
-        contador =+ 1;
+        printf("CNPJ: %s, Toneladas: %d\n", listaDeResiduos->residuo.cnpj, listaDeResiduos->residuo.toneladas);
         listaDeResiduos = listaDeResiduos->proximo;
     }
 
-    Sleep(1000);
+    Sleep(2000);
 }
 
 void relatorios()
