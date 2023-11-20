@@ -16,10 +16,10 @@ void relatorioResiduosPorEmpresas()
 
     system("cls");
     printf("------------------------------------------------------\n");
-    printf("          RELATÓRIO DE RESÍDUOS POR EMPRESA\n");
+    printf("          RELATï¿½RIO DE RESï¿½DUOS POR EMPRESA\n");
     printf("------------------------------------------------------\n\n");
 
-    printf("Digite o CNPJ (apenas números) da empresa: ");
+    printf("Digite o CNPJ (apenas nï¿½meros) da empresa: ");
     getchar();
     fgets(cnpj, sizeof(cnpj), stdin);
     cnpj[strcspn(cnpj, "\n")] = 0; // Remove o caractere de nova linha
@@ -33,7 +33,7 @@ void relatorioResiduosPorEmpresas()
 
     if(listaDeResiduos == NULL)
     {
-        printf("\n-------------- RESÍDUOS NÃO ENCONTRADOS PARA ESTE CNPJ!! --------------\n\n");
+        printf("\n-------------- RESï¿½DUOS Nï¿½O ENCONTRADOS PARA ESTE CNPJ!! --------------\n\n");
         Sleep(2000);
         return;
     }
@@ -53,12 +53,12 @@ void relatorios()
     {
         system("cls");
         printf("------------------------------------------------------\n");
-        printf("                      RELATÓRIOS\n");
+        printf("                      RELATï¿½RIOS\n");
         printf("------------------------------------------------------\n\n");
 
-        printf("Escolha uma das opções abaixo:\n\n");
-        printf("1. Relatório de resíduos por empresa\n");
-        printf("2. Outro tipo de relatório\n");
+        printf("Escolha uma das opï¿½ï¿½es abaixo:\n\n");
+        printf("1. Relatï¿½rio de resï¿½duos por empresa\n");
+        printf("2. Outro tipo de relatï¿½rio\n");
         printf("3. Voltar ao menu principal\n");
         if (scanf("%d", &escolha) != 1);
         {
@@ -75,7 +75,7 @@ void relatorios()
             telaInicial();
             break;
         default:
-            printf("\n---------  Opção inválida! Tente novamente.  ---------\n\n");
+            printf("\n---------  Opï¿½ï¿½o invï¿½lida! Tente novamente.  ---------\n\n");
             system("pause");
             break;
         }
@@ -94,9 +94,9 @@ void cadastrarResiduos()
     {
         system("cls");
         printf("------------------------------------------------------\n");
-        printf("                 CADASTRO DE RESÍDUOS\n");
+        printf("                 CADASTRO DE RESï¿½DUOS\n");
         printf("------------------------------------------------------\n\n");
-        printf("Digite o CNPJ (apenas números) da empresa: ");
+        printf("Digite o CNPJ (apenas nï¿½meros) da empresa: ");
         getchar();
         fgets(cnpj, sizeof(cnpj), stdin);
         cnpj[strcspn(cnpj, "\n")] = 0; // Remove o caractere de nova linha
@@ -107,7 +107,7 @@ void cadastrarResiduos()
 
         if(!empresa.isValid)
         {
-            printf("\n-------------- Empresa não encontrada!! --------------\n\n");
+            printf("\n-------------- Empresa nï¿½o encontrada!! --------------\n\n");
             printf("[1] Para tentar novamente\n");
             printf("[2] Para voltar ao menu principal\n");
         }
@@ -125,7 +125,7 @@ void cadastrarResiduos()
             telaInicial();
             break;
         default:
-            printf("\n---------  Opção inválida! Tente novamente.  ---------\n\n");
+            printf("\n---------  Opï¿½ï¿½o invï¿½lida! Tente novamente.  ---------\n\n");
             system("pause");
             break;
         }
@@ -135,26 +135,26 @@ void cadastrarResiduos()
 
     printf("Empresa cadastrada: ");
     printf(empresa.nomeFantasia);
-    printf("\nDigite a quantidade de resíduos em toneladas (número inteiro): ");
+    printf("\nDigite a quantidade de resï¿½duos em toneladas (nï¿½mero inteiro): ");
     scanf("%d", &residuo.toneladas);
 
     inserirResiduo(residuo);
 
-    printf("\n---------- RESÍDUO CADASTRADO COM SUCESSO!! ----------\n\n");
+    printf("\n---------- RESï¿½DUO CADASTRADO COM SUCESSO!! ----------\n\n");
     Sleep(2000);
 
 }
 
-void cadastrarUsuario() // TELA DE CADASTRO DE USUÁRIOS
+void cadastrarUsuario() // TELA DE CADASTRO DE USUï¿½RIOS
 {
     char nomeDeUsuario[50], senha[50];
 
     system("cls");
     printf("------------------------------------------------------\n");
-    printf("              CADASTRO DE NOVOS USUÁRIOS\n");
+    printf("              CADASTRO DE NOVOS USUï¿½RIOS\n");
     printf("------------------------------------------------------\n\n");
 
-    printf("Digite o nome do novo usuário: ");
+    printf("Digite o nome do novo usuï¿½rio: ");
     scanf("%s", nomeDeUsuario);
     printf("Agora digite a senha: ");
     scanf("%s", senha);
@@ -163,7 +163,7 @@ void cadastrarUsuario() // TELA DE CADASTRO DE USUÁRIOS
 
     if (usuarioFoiCadastrado)
     {
-        printf("\n-------- NOVO USUÁRIO CADASTRADO COM SUCESSO! --------\n");
+        printf("\n-------- NOVO USUï¿½RIO CADASTRADO COM SUCESSO! --------\n");
     }
 
     Sleep(1500);
@@ -176,20 +176,20 @@ void cadastrarIndustria() // TELA DE CADASTRO DE INDUSTRIAS
 
     system("cls");
     printf("------------------------------------------------------\n");
-    printf("               CADASTRO DE INDÚSTRIAS\n");
+    printf("               CADASTRO DE INDï¿½STRIAS\n");
     printf("------------------------------------------------------\n");
 
-    // FORMULÁRIO COM BASE NAS INFORMAÇÕES SUGERIDAS DO PIM
+    // FORMULï¿½RIO COM BASE NAS INFORMAï¿½ï¿½ES SUGERIDAS DO PIM
 
-    printf("\n- Qual o nome do responsável pela empresa? ");
+    printf("\n- Qual o nome do responsï¿½vel pela empresa? ");
     fgets(empresa.nomeDoResponsavel, sizeof(empresa.nomeDoResponsavel), stdin);
     empresa.nomeDoResponsavel[strcspn(empresa.nomeDoResponsavel, "\n")] = 0; // Remove o '\n'
 
-    printf("\n- Qual o documento do responsável pela empresa? ");
+    printf("\n- Qual o documento do responsï¿½vel pela empresa? ");
     fgets(empresa.documentoDoResponsavel, sizeof(empresa.documentoDoResponsavel), stdin);
     empresa.documentoDoResponsavel[strcspn(empresa.documentoDoResponsavel, "\n")] = 0;
 
-    printf("\n- Qual a razão social da empresa? ");
+    printf("\n- Qual a razï¿½o social da empresa? ");
     fgets(empresa.razaoSocial, sizeof(empresa.razaoSocial), stdin);
     empresa.razaoSocial[strcspn(empresa.razaoSocial, "\n")] = 0;
 
@@ -197,17 +197,17 @@ void cadastrarIndustria() // TELA DE CADASTRO DE INDUSTRIAS
     fgets(empresa.nomeFantasia, sizeof(empresa.nomeFantasia), stdin);
     empresa.nomeFantasia[strcspn(empresa.nomeFantasia, "\n")] = 0;
 
-    printf("\n- Qual o CNPJ (apenas números) da empresa? ");
+    printf("\n- Qual o CNPJ (apenas nï¿½meros) da empresa? ");
     fgets(empresa.cnpj, sizeof(empresa.cnpj), stdin);
     empresa.cnpj[strcspn(empresa.cnpj, "\n")] = 0;
 
-    printf("\n- Qual o número de telefone da empresa? ");
+    printf("\n- Qual o nï¿½mero de telefone da empresa? ");
     fgets(empresa.telefoneDaEmpresa, sizeof(empresa.telefoneDaEmpresa), stdin);
     empresa.telefoneDaEmpresa[strcspn(empresa.telefoneDaEmpresa, "\n")] = 0;
 
-    printf("\n- Padrão para o preenchimento da próxima pergunta:\n");
-    printf("   > RUA, NÚMERO, BAIRRO, CIDADE, ESTADO, CEP <  \n");
-    printf("- Qual o endereço da empresa? ");
+    printf("\n- Padrï¿½o para o preenchimento da prï¿½xima pergunta:\n");
+    printf("   > RUA, Nï¿½MERO, BAIRRO, CIDADE, ESTADO, CEP <  \n");
+    printf("- Qual o endereï¿½o da empresa? ");
     fgets(empresa.enderecoDaEmpresa, sizeof(empresa.enderecoDaEmpresa), stdin);
     empresa.enderecoDaEmpresa[strcspn(empresa.enderecoDaEmpresa, "\n\r")] = 0;
 
@@ -215,15 +215,15 @@ void cadastrarIndustria() // TELA DE CADASTRO DE INDUSTRIAS
     fgets(empresa.emailDaEmpresa, sizeof(empresa.emailDaEmpresa), stdin);
     empresa.emailDaEmpresa[strcspn(empresa.emailDaEmpresa, "\n\r")] = 0;
 
-    // Aqui você deverá ter a função inserirEmpresa() definida em outra parte do seu código
+    // Aqui vocï¿½ deverï¿½ ter a funï¿½ï¿½o inserirEmpresa() definida em outra parte do seu cï¿½digo
     inserirEmpresa(empresa);
 
     printf("\n------------------------------------------------------\n");
-    printf("          INDÚSTRIA CADASTRADA COM SUCESSO!\n");
+    printf("          INDï¿½STRIA CADASTRADA COM SUCESSO!\n");
     printf("------------------------------------------------------\n");
 
     Sleep(1500); /* Pausa o programa por 1.5 segundos;
-    Aqui você deverá ter a função renderizaMenuEDireciona() definida em outra parte do seu código */
+    Aqui vocï¿½ deverï¿½ ter a funï¿½ï¿½o renderizaMenuEDireciona() definida em outra parte do seu cï¿½digo */
     renderizaMenuEDireciona();
 }
 
@@ -238,14 +238,15 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
         printf("                    MENU PRINCIPAL:\n");
         printf("------------------------------------------------------\n\n");
 
-        printf("1. Cadastrar novo usuário\n");
-        printf("2. Cadastrar indústria\n");
-        printf("3. Cadastrar resíduos\n");
-        printf("4. Exibir dados da indústria\n");
-        printf("5. Exibir relatórios\n");
+        printf("1. Cadastrar novo usuï¿½rio\n");
+        printf("2. Cadastrar indï¿½stria\n");
+        printf("3. Cadastrar resï¿½duos\n");
+        printf("4. Exibir dados da indï¿½stria\n");
+        printf("5. Exibir relatï¿½rios\n");
         printf("6. Sair\n");
 
-        printf("\nEscolha uma opção: ");
+        printf("\nEscolha uma opï¿½ï¿½o: ");
+
         if (scanf("%d", &escolha) != 1);
         {
             while(getchar() != '\n');
@@ -273,7 +274,7 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
             exit(0);
             break;
         default:
-            printf("\n---------  Opção inválida! Tente novamente.  ---------\n\n");
+            printf("\n---------  Opï¿½ï¿½o invï¿½lida! Tente novamente.  ---------\n\n");
             system("pause");
             break;
 
@@ -292,11 +293,11 @@ bool checarSenha(const char* senhaDoUsuario, const char* senhaDigitada)
     return false;
 }
 
-void logar(char* nomeDeUsuario, char* senha) // FUNÇÃO E TELAS DE LOGIN
+void logar(char* nomeDeUsuario, char* senha) // FUNï¿½ï¿½O E TELAS DE LOGIN
 {
     Usuario usuario;
 
-    printf("Digite seu usuário: ");
+    printf("Digite seu usuï¿½rio: ");
     scanf("%s", nomeDeUsuario);
 
     printf("Digite sua senha: ");
@@ -306,7 +307,7 @@ void logar(char* nomeDeUsuario, char* senha) // FUNÇÃO E TELAS DE LOGIN
 
     if(!usuario.isValid)
     {
-        printf("\n-----------  ERRO: usuário não encontrado  -----------\n\n");
+        printf("\n-----------  ERRO: usuï¿½rio nï¿½o encontrado  -----------\n\n");
         printf("                   TENTE NOVAMENTE\n\n");
 
         system("pause");
@@ -335,7 +336,7 @@ void logar(char* nomeDeUsuario, char* senha) // FUNÇÃO E TELAS DE LOGIN
     else
     {
         printf("\n");
-        printf("Senha inválida! Tente novamente!\n\n");
+        printf("Senha invï¿½lida! Tente novamente!\n\n");
 
         memset(nomeDeUsuario, 0, sizeof(nomeDeUsuario));
         memset(senha, 0, sizeof(senha));
@@ -356,7 +357,7 @@ void telaInicial()
 {
     setlocale(LC_ALL, "Portuguese");
     printf("------------------------------------------------------\n");
-    printf("          | STARTUP DE SOLUÇÕES AMBIENTAIS |\n");
+    printf("          | STARTUP DE SOLUï¿½ï¿½ES AMBIENTAIS |\n");
     printf("------------------------------------------------------\n");
-    printf(" Olá! Efetue login para ter acesso ao nosso sistema.\n\n");
+    printf(" Olï¿½! Efetue login para ter acesso ao nosso sistema.\n\n");
 }
