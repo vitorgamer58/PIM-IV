@@ -246,6 +246,7 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
         printf("6. Sair\n");
 
         printf("\nEscolha uma op��o: ");
+
         if (scanf("%d", &escolha) != 1);
         {
             while(getchar() != '\n');
