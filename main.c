@@ -14,85 +14,107 @@ void relatorioResiduosPorEmpresas()
     char cnpj[16];
     ListaDeResiduos *listaDeResiduos;
 
-    printf("Digite o CNPJ (apenas números) da empresa: ");
+    system("cls");
+    printf("------------------------------------------------------\n");
+    printf("          RELATï¿½RIO DE RESï¿½DUOS POR EMPRESA\n");
+    printf("------------------------------------------------------\n\n");
+
+    printf("Digite o CNPJ (apenas nï¿½meros) da empresa: ");
     getchar();
     fgets(cnpj, sizeof(cnpj), stdin);
     cnpj[strcspn(cnpj, "\n")] = 0; // Remove o caractere de nova linha
 
     listaDeResiduos = buscarResiduoPorEmpresa(cnpj);
 
-    if(listaDeResiduos->proximo == NULL) {
+    if(listaDeResiduos->proximo == NULL)
+    {
         printf("UM ELEMENTO!");
     }
 
     if(listaDeResiduos == NULL)
     {
-        printf("\n-------------- Residuos não encontrados para este CNPJ!! --------------\n\n");
+        printf("\n-------------- RESï¿½DUOS Nï¿½O ENCONTRADOS PARA ESTE CNPJ!! --------------\n\n");
         Sleep(2000);
         return;
     }
 
-    while (listaDeResiduos != NULL) {
+    while (listaDeResiduos != NULL)
+    {
         printf("CNPJ: %s, Toneladas: %d\n", listaDeResiduos->residuo.cnpj, listaDeResiduos->residuo.toneladas);
         listaDeResiduos = listaDeResiduos->proximo;
     }
-
     Sleep(2000);
 }
 
 void relatorios()
 {
     int escolha;
-
-    system("cls");
-    printf("------------------------------------------------------\n");
-    printf("                      RELATï¿½RIOS\n");
-    printf("------------------------------------------------------\n\n");
-
-    printf("Escolha uma das opï¿½ï¿½es abaixo:\n\n");
-    printf("[1] relatï¿½rio de resï¿½duos por empresa\n");
-    printf("[2] outro tipo de relatï¿½rio\n");
-    printf("[3] voltar ao menu principal\n");
-    scanf("%d", &escolha);
-
-    switch (escolha)
+    do
     {
-    case 1:
-        relatorioResiduosPorEmpresas();
-    case 2:
-        break;
-    case 3:
-        telaInicial();
-        break;
+        system("cls");
+        printf("------------------------------------------------------\n");
+        printf("                      RELATï¿½RIOS\n");
+        printf("------------------------------------------------------\n\n");
+
+        printf("Escolha uma das opï¿½ï¿½es abaixo:\n\n");
+        printf("1. Relatï¿½rio de resï¿½duos por empresa\n");
+        printf("2. Outro tipo de relatï¿½rio\n");
+        printf("3. Voltar ao menu principal\n");
+        if (scanf("%d", &escolha) != 1);
+        {
+            while(getchar() != '\n');
+        }
+
+        switch (escolha)
+        {
+        case 1:
+            relatorioResiduosPorEmpresas();
+        case 2:
+            break;
+        case 3:
+            telaInicial();
+            break;
+        default:
+            printf("\n---------  Opï¿½ï¿½o invï¿½lida! Tente novamente.  ---------\n\n");
+            system("pause");
+            break;
+        }
     }
+    while(escolha != 3);
 }
 
 void cadastrarResiduos()
 {
     Residuo residuo;
     Empresa empresa;
-    char cnpj[15];
+    char cnpj[16];
     int escolha;
 
-    system("cls");
-    printf("------------------------------------------------------\n");
-    printf("                 CADASTRO DE RESï¿½DUOS\n");
-    printf("------------------------------------------------------\n\n");
-    printf("Digite o CNPJ (apenas nï¿½meros) da empresa: ");
-    getchar();
-    fgets(cnpj, sizeof(cnpj), stdin);
-    cnpj[strcspn(cnpj, "\n")] = 0; // Remove o caractere de nova linha
-
-    strcpy(residuo.cnpj, cnpj);
-
-    empresa = buscarEmpresa(cnpj);
-
-    if(!empresa.isValid)
+    do
     {
-        printf("\n-------------- Empresa nï¿½o encontrada!! --------------\n\n");
-        printf("Tecle [1] para tentar novamente\n");
-        printf("Tecle [2] para voltar ao menu principal\n");
-        scanf("%d", &escolha);
+        system("cls");
+        printf("------------------------------------------------------\n");
+        printf("                 CADASTRO DE RESï¿½DUOS\n");
+        printf("------------------------------------------------------\n\n");
+        printf("Digite o CNPJ (apenas nï¿½meros) da empresa: ");
+        getchar();
+        fgets(cnpj, sizeof(cnpj), stdin);
+        cnpj[strcspn(cnpj, "\n")] = 0; // Remove o caractere de nova linha
+
+        strcpy(residuo.cnpj, cnpj);
+
+        empresa = buscarEmpresa(cnpj);
+
+        if(!empresa.isValid)
+        {
+            printf("\n-------------- Empresa nï¿½o encontrada!! --------------\n\n");
+            printf("[1] Para tentar novamente\n");
+            printf("[2] Para voltar ao menu principal\n");
+        }
+        if (scanf("%d", &escolha) != 1);
+        {
+            while(getchar() != '\n');
+        }
 
         switch(escolha)
         {
@@ -102,13 +124,18 @@ void cadastrarResiduos()
         case 2:
             telaInicial();
             break;
+        default:
+            printf("\n---------  Opï¿½ï¿½o invï¿½lida! Tente novamente.  ---------\n\n");
+            system("pause");
+            break;
         }
-        return;
+
     }
+    while(escolha != 2);
 
     printf("Empresa cadastrada: ");
     printf(empresa.nomeFantasia);
-    printf("\nDigite a quantidade de resï¿½duos em toneladas (numero inteiro): ");
+    printf("\nDigite a quantidade de resï¿½duos em toneladas (nï¿½mero inteiro): ");
     scanf("%d", &residuo.toneladas);
 
     inserirResiduo(residuo);
@@ -151,7 +178,6 @@ void cadastrarIndustria() // TELA DE CADASTRO DE INDUSTRIAS
     printf("------------------------------------------------------\n");
     printf("               CADASTRO DE INDï¿½STRIAS\n");
     printf("------------------------------------------------------\n");
-    getchar();
 
     // FORMULï¿½RIO COM BASE NAS INFORMAï¿½ï¿½ES SUGERIDAS DO PIM
 
@@ -180,7 +206,7 @@ void cadastrarIndustria() // TELA DE CADASTRO DE INDUSTRIAS
     empresa.telefoneDaEmpresa[strcspn(empresa.telefoneDaEmpresa, "\n")] = 0;
 
     printf("\n- Padrï¿½o para o preenchimento da prï¿½xima pergunta:\n");
-    printf("  > RUA, Nï¿½MERO, BAIRRO, CIDADE, ESTADO e CEP <  \n");
+    printf("   > RUA, Nï¿½MERO, BAIRRO, CIDADE, ESTADO, CEP <  \n");
     printf("- Qual o endereï¿½o da empresa? ");
     fgets(empresa.enderecoDaEmpresa, sizeof(empresa.enderecoDaEmpresa), stdin);
     empresa.enderecoDaEmpresa[strcspn(empresa.enderecoDaEmpresa, "\n\r")] = 0;
@@ -220,7 +246,10 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
         printf("6. Sair\n");
 
         printf("\nEscolha uma opï¿½ï¿½o: ");
-        scanf("%d", &escolha);
+        if (scanf("%d", &escolha) != 1);
+        {
+            while(getchar() != '\n');
+        }
 
         switch(escolha)
         {
