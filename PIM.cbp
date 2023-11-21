@@ -39,10 +39,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="fileHelper.h" />
-		<Unit filename="listas/listas.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="listas/listas.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -55,7 +51,13 @@
 		<Unit filename="usuarioRepository.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="verificadores.h" />
+		<Unit filename="verificadores.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="verificadores.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
