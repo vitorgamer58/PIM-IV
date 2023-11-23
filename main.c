@@ -123,7 +123,6 @@ void cadastrarResiduos()
     cnpj[strcspn(cnpj, "\n")] = 0; // Remove o caractere de nova linha
 
     strcpy(residuo.cnpj, cnpj);
-
     empresa = buscarEmpresa(cnpj);
 
     if(!empresa.isValid)
@@ -205,39 +204,46 @@ void cadastrarIndustria() // TELA DE CADASTRO DE INDUSTRIAS
     // FORMUL�RIO COM BASE NAS INFORMA��ES SUGERIDAS DO PIM
 
     printf("\n- Qual o nome do responsavel pela empresa? ");
+    fflush(stdin);
     fgets(empresa.nomeDoResponsavel, sizeof(empresa.nomeDoResponsavel), stdin);
     empresa.nomeDoResponsavel[strcspn(empresa.nomeDoResponsavel, "\n")] = 0; // Remove o '\n'
 
     printf("\n- Qual o documento (RG ou CPF) do responsavel pela empresa? ");
+    fflush(stdin);
     fgets(empresa.documentoDoResponsavel, sizeof(empresa.documentoDoResponsavel), stdin);
     empresa.documentoDoResponsavel[strcspn(empresa.documentoDoResponsavel, "\n")] = 0;
 
     printf("\n- Qual a razao social da empresa? ");
+    fflush(stdin);
     fgets(empresa.razaoSocial, sizeof(empresa.razaoSocial), stdin);
     empresa.razaoSocial[strcspn(empresa.razaoSocial, "\n")] = 0;
 
     printf("\n- Qual o nome fantasia da empresa? ");
+    fflush(stdin);
     fgets(empresa.nomeFantasia, sizeof(empresa.nomeFantasia), stdin);
     empresa.nomeFantasia[strcspn(empresa.nomeFantasia, "\n")] = 0;
 
     printf("\n- Qual o CNPJ (apenas numeros) da empresa? ");
+    fflush(stdin);
     fgets(empresa.cnpj, sizeof(empresa.cnpj), stdin);
     empresa.cnpj[strcspn(empresa.cnpj, "\n")] = 0;
 
     printf("\n- Qual o numero de telefone da empresa? ");
+    fflush(stdin);
     fgets(empresa.telefoneDaEmpresa, sizeof(empresa.telefoneDaEmpresa), stdin);
     empresa.telefoneDaEmpresa[strcspn(empresa.telefoneDaEmpresa, "\n")] = 0;
 
     printf("\n- Padrao para o preenchimento da proxima pergunta:\n");
     printf("   > RUA, NUMERO, BAIRRO, CIDADE, ESTADO, CEP <  \n");
     printf("- Qual o endereco da empresa? ");
+    fflush(stdin);
     fgets(empresa.enderecoDaEmpresa, sizeof(empresa.enderecoDaEmpresa), stdin);
     empresa.enderecoDaEmpresa[strcspn(empresa.enderecoDaEmpresa, "\n\r")] = 0;
 
     printf("\n- Qual o e-mail da empresa? ");
+    fflush(stdin);
     fgets(empresa.emailDaEmpresa, sizeof(empresa.emailDaEmpresa), stdin);
     empresa.emailDaEmpresa[strcspn(empresa.emailDaEmpresa, "\n\r")] = 0;
-
 
     inserirEmpresa(empresa);
 
