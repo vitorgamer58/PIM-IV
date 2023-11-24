@@ -153,7 +153,6 @@ void cadastrarResiduos()
         }
         while(escolha != 2);
     }
-    while(escolha != 2);
 
     printf("\nEmpresa cadastrada: ");
     printf(empresa.nomeFantasia);
