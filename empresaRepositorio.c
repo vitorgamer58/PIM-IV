@@ -47,26 +47,29 @@ Empresa buscarEmpresa(const char *cnpj)
 
     if (ArquivoEmpresas == NULL)
     {
-        // Tratamento de erro: arquivo n�o p�de ser aberto
+        // Tratamento de erro: arquivo nao pode ser aberto
         return empresa;
     }
 
-    while(fscanf(ArquivoEmpresas, "%100[^;];%100[^;];%100[^;];%100[^;];%100[^;];%100[^;];%200[^;];%15[^\n]\n",
-                 empresa.nomeDoResponsavel,
-                 empresa.documentoDoResponsavel,
-                 empresa.nomeFantasia,
-                 empresa.razaoSocial,
-                 empresa.emailDaEmpresa,
-                 empresa.telefoneDaEmpresa,
-                 empresa.enderecoDaEmpresa,
-                 empresa.cnpj
-                ) != EOF)
+    char buffer[1024]; // Assuming a single line won't exceed 1024 characters
+    while(fgets(buffer, sizeof(buffer), ArquivoEmpresas))
     {
-        if(strcmp(cnpj, empresa.cnpj) == 0)
+        if(sscanf(buffer, "%100[^;];%100[^;];%100[^;];%100[^;];%100[^;];%100[^;];%200[^;];%15[^\n]",
+                  empresa.nomeDoResponsavel,
+                  empresa.documentoDoResponsavel,
+                  empresa.nomeFantasia,
+                  empresa.razaoSocial,
+                  empresa.emailDaEmpresa,
+                  empresa.telefoneDaEmpresa,
+                  empresa.enderecoDaEmpresa,
+                  empresa.cnpj
+                 ) == 8) // Check if all fields are read correctly
         {
-            empresa.isValid = true;
-            fclose(ArquivoEmpresas);
-            return empresa;
+            if(strcmp(cnpj, empresa.cnpj) == 0)
+            {
+                empresa.isValid = true;
+                break;
+            }
         }
     }
 
