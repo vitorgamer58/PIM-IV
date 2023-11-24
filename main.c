@@ -59,9 +59,10 @@ void relatorioResiduosPorEmpresas()
         }
         while(escolha != 2);
     }
+    printf("\n");
     while (listaDeResiduos != NULL)
     {
-        printf("\nCNPJ encontrado: %s\nResiduos cadastrados: %d toneladas.\n", listaDeResiduos->residuo.cnpj, listaDeResiduos->residuo.toneladas);
+        printf("\Residuos cadastrados: %d toneladas.\n", listaDeResiduos->residuo.toneladas);
         listaDeResiduos = listaDeResiduos->proximo;
     }
     printf("\n");
