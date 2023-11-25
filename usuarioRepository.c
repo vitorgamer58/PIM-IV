@@ -3,7 +3,7 @@
 #include <string.h>
 #include "types.h"
 #include "userRepository.h"
-#include  "fileHelper.h"
+#include "helpers/fileHelper.h"
 
 Usuario buscarUsuario(const char *nomeDeUsuario)
 {

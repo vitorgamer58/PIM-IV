@@ -36,6 +36,8 @@ FILE* abrirArquivoParaGravacao(const char* nomeDoArquivo)
     if (Ponteiro == NULL)
     {
         perror("Erro ao abrir o arquivo");
+        return NULL;
     }
     return Ponteiro;
 }
+
