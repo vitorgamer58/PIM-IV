@@ -9,6 +9,26 @@
 #include "empresaRepositorio.h"
 #include "residuosRepositorio.h"
 
+void relatorioSomaDeResiduos()
+{
+
+
+    system("cls");
+    printf("------------------------------------------------------\n");
+    printf("     TOTAL DE RESIDUOS CADASTRADADOS POR EMPRESA\n");
+    printf("------------------------------------------------------\n\n");
+
+
+
+    system("pause");
+    printf("\n-----------------------> SAINDO... VOID IN PROGRESS...");
+    Sleep(1500);
+    relatorios();
+
+
+}
+
+
 void relatorioResiduosPorEmpresas()
 {
     char cnpj[16];
@@ -65,8 +85,10 @@ void relatorioResiduosPorEmpresas()
         printf("\Residuos cadastrados: %d toneladas.\n", listaDeResiduos->residuo.toneladas);
         listaDeResiduos = listaDeResiduos->proximo;
     }
+    printf("\n------------------------------------------------------\n");
     printf("\n");
     system("pause");
+    relatorios();
 }
 
 void relatorios()
@@ -82,7 +104,7 @@ void relatorios()
     {
         printf("\nEscolha uma das opcoes abaixo:\n\n");
         printf("1. Relatorio de residuos por empresa\n");
-        printf("2. Outro tipo de relatorio\n");
+        printf("2. Total de residuos cadastrados por empresa\n");
         printf("3. Voltar ao menu principal\n");
         if (scanf("%d", &escolha) != 1)
         {
@@ -93,7 +115,9 @@ void relatorios()
         {
         case 1:
             relatorioResiduosPorEmpresas();
+            break;
         case 2:
+            relatorioSomaDeResiduos();
             break;
         case 3:
             renderizaMenuEDireciona();
@@ -162,7 +186,7 @@ void cadastrarResiduos()
 
     inserirResiduo(residuo);
 
-    printf("\n---------- RESIDUO CADASTRADO COM SUCESSO!! ----------\n\n");
+    printf("\n---------- RESIDUO CADASTRADO COM SUCESSO!! ----------\n");
     Sleep(2000);
 
 }
