@@ -9,4 +9,23 @@ typedef struct
     struct ListaDeResiduos * proximo;
 } ListaDeResiduos;
 
+typedef struct
+{
+    Empresa empresa;
+    struct ListaDeEmpresas * proximo;
+} ListaDeEmpresas;
+
+typedef struct
+{
+    Empresa empresa;
+    struct ListaDeEmpresas * proximo;
+} ListaRelatorioSomaResiduos;
+
+ListaDeResiduos* iniciaListaDeResiduos();
+ListaDeResiduos* insereNaListaDeResiduos(ListaDeResiduos* lista, Residuo novoResiduo);
+ListaDeEmpresas* iniciaListaDeEmpresas();
+ListaDeEmpresas* insereNaListaDeEmpresas(ListaDeEmpresas* lista, Empresa novaEmpresa);
+
+
+
 #endif // LISTAS_H_INCLUDED
