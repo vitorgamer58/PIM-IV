@@ -323,9 +323,8 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
         printf("1. Cadastrar novo usuario\n");
         printf("2. Cadastrar industria\n");
         printf("3. Cadastrar residuos\n");
-        printf("4. Exibir dados da industria\n");
-        printf("5. Exibir relatorios\n");
-        printf("6. Sair\n");
+        printf("4. Exibir relatorios\n");
+        printf("5. Sair\n");
 
         printf("\nEscolha uma opcao: ");
         if (scanf("%d", &escolha) != 1)
@@ -345,11 +344,9 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
             cadastrarResiduos();
             break;
         case 4:
-            break;
-        case 5:
             relatorios();
             break;
-        case 6:
+        case 5:
             printf("\n-------------------------------> Saindo do programa...\n");
             printf("Digite qualquer tecla para fechar esta janela <-------\n\n");
             exit(0);
@@ -361,7 +358,7 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
 
         }
     }
-    while(escolha != 6);
+    while(escolha != 5);
 }
 
 bool checarSenha(const char* senhaDoUsuario, const char* senhaDigitada)
