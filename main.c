@@ -36,34 +36,35 @@ void relatorioResiduosPorEmpresas()
     {
         do
         {
-                printf("\n------ RESIDUOS NAO ENCONTRADOS PARA ESTE CNPJ! ------\n\n");
-                printf("[1] Para tentar novamente\n");
-                printf("[2] Para voltar ao menu principal\n");
-                if (scanf("%d", &escolha) != 1)
-                {
-                    while(getchar() != '\n');
-                }
+            printf("\n------ RESIDUOS NAO ENCONTRADOS PARA ESTE CNPJ! ------\n\n");
+            printf("[1] Para tentar novamente\n");
+            printf("[2] Para voltar ao menu principal\n");
+            if (scanf("%d", &escolha) != 1)
+            {
+                while(getchar() != '\n');
+            }
 
-                switch (escolha)
-                {
-                case 1:
-                    relatorioResiduosPorEmpresas();
-                case 2:
-                    renderizaMenuEDireciona();
-                    break;
-                default:
-                    printf("\n---------  Opcao invalida! Tente novamente.  ---------\n\n");
-                    system("pause");
-                    break;
-                }
+            switch (escolha)
+            {
+            case 1:
+                relatorioResiduosPorEmpresas();
+            case 2:
+                renderizaMenuEDireciona();
+                break;
+            default:
+                printf("\n---------  Opcao invalida! Tente novamente.  ---------\n\n");
+                system("pause");
+                break;
+            }
         }
         while(escolha != 2);
     }
-        while (listaDeResiduos != NULL)
-        {
-            printf("\nCNPJ encontrado: %s\nResiduos cadastrados: %d toneladas.\n", listaDeResiduos->residuo.cnpj, listaDeResiduos->residuo.toneladas);
-            listaDeResiduos = listaDeResiduos->proximo;
-        }
+    printf("\n");
+    while (listaDeResiduos != NULL)
+    {
+        printf("\Residuos cadastrados: %d toneladas.\n", listaDeResiduos->residuo.toneladas);
+        listaDeResiduos = listaDeResiduos->proximo;
+    }
     printf("\n");
     system("pause");
 }
@@ -153,7 +154,6 @@ void cadastrarResiduos()
         }
         while(escolha != 2);
     }
-    while(escolha != 2);
 
     printf("\nEmpresa cadastrada: ");
     printf(empresa.nomeFantasia);
