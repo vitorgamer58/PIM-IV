@@ -3,6 +3,7 @@
 #include <string.h>
 #include "types.h"
 #include "fileHelper.h"
+#include "listas/listas.h"
 
 bool inserirEmpresa(Empresa empresa)
 {
@@ -51,7 +52,7 @@ Empresa buscarEmpresa(const char *cnpj)
         return empresa;
     }
 
-    char buffer[1024]; // Assuming a single line won't exceed 1024 characters
+    char buffer[1024];
     while(fgets(buffer, sizeof(buffer), ArquivoEmpresas))
     {
         if(sscanf(buffer, "%100[^;];%100[^;];%100[^;];%100[^;];%100[^;];%100[^;];%200[^;];%15[^\n]",
@@ -63,7 +64,7 @@ Empresa buscarEmpresa(const char *cnpj)
                   empresa.telefoneDaEmpresa,
                   empresa.enderecoDaEmpresa,
                   empresa.cnpj
-                 ) == 8) // Check if all fields are read correctly
+                 ) == 8)
         {
             if(strcmp(cnpj, empresa.cnpj) == 0)
             {
@@ -77,3 +78,41 @@ Empresa buscarEmpresa(const char *cnpj)
 
     return empresa;
 }
+
+ListaDeEmpresas* buscarTodasEmpresas()
+{
+    Empresa empresa;
+    ListaDeEmpresas *listaDeEmpresas = iniciaListaDeEmpresas();
+    empresa.isValid = false;
+
+    FILE *ArquivoEmpresas = abrirOuCriarArquivo("empresas.txt");
+
+    if (ArquivoEmpresas == NULL)
+    {
+        return listaDeEmpresas;
+    }
+
+    char buffer[1024];
+    while(fgets(buffer, sizeof(buffer), ArquivoEmpresas))
+    {
+        if(sscanf(buffer, "%100[^;];%100[^;];%100[^;];%100[^;];%100[^;];%100[^;];%200[^;];%15[^\n]",
+                  empresa.nomeDoResponsavel,
+                  empresa.documentoDoResponsavel,
+                  empresa.nomeFantasia,
+                  empresa.razaoSocial,
+                  empresa.emailDaEmpresa,
+                  empresa.telefoneDaEmpresa,
+                  empresa.enderecoDaEmpresa,
+                  empresa.cnpj
+                 ) == 8)
+        {
+            empresa.isValid = true;
+            listaDeEmpresas = insereNaListaDeEmpresas(listaDeEmpresas, empresa);
+        }
+    }
+
+    fclose(ArquivoEmpresas);
+
+    return listaDeEmpresas;
+}
+
