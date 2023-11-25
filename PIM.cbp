@@ -59,10 +59,6 @@
 		<Unit filename="usuarioRepository.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="verificadores.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="verificadores.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
