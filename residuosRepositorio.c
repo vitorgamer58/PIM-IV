@@ -35,7 +35,7 @@ bool inserirResiduo(Residuo residuo)
 
 ListaDeResiduos* buscarResiduoPorEmpresa(const char* cnpj)
 {
-    FILE *ArquivoResiduos = abrirOuCriarArquivo("Residuos.txt");
+    FILE *ArquivoResiduos = abrirOuCriarArquivo("residuos.txt");
     Residuo residuo;
     ListaDeResiduos *listaDeResiduos = iniciaListaDeResiduos();
     char linha[1000];
