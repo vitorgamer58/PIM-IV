@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <windows.h>
-//#include <locale.h>
+#include <locale.h>
 #include "types.h"
 #include "userRepository.h"
 #include "empresaRepositorio.h"
@@ -88,7 +88,7 @@ void relatorioSomaDeResiduos()
                 scanf("%s", nomeDoArquivoDeRelatorio);
                 strcat(nomeDoArquivoDeRelatorio, ".txt");
                 gravarStringNoArquivo(nomeDoArquivoDeRelatorio, relatorio);
-                printf("\nRelatório salvo com sucesso!");
+                printf("\nRelatorio salvo com sucesso!");
                 Sleep(1500);
                 relatorios();
             case 2:
