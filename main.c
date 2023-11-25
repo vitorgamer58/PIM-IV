@@ -9,12 +9,16 @@
 #include "empresaRepositorio.h"
 #include "residuosRepositorio.h"
 #include "helpers/helpers.h"
+#include "helpers/fileHelper.h"
 
 void relatorioSomaDeResiduos()
 {
     ListaDeEmpresas *listaDeEmpresas;
     ListaDeResiduos *listaDeResiduos;
     ListaDeResiduos *listaSomaDeResiduosPorEmpresa = iniciaListaDeResiduos();
+    char relatorio[10000] = "CNPJ;Pesagem;Faturamento\n";
+    int escolha;
+    char nomeDoArquivoDeRelatorio[50];
 
     system("cls");
     printf("------------------------------------------------------\n");
@@ -51,14 +55,54 @@ void relatorioSomaDeResiduos()
                listaSomaDeResiduosPorEmpresa->residuo.cnpj,
                listaSomaDeResiduosPorEmpresa->residuo.toneladas,
                listaSomaDeResiduosPorEmpresa->residuo.faturamento
-              );
+        );
+
+        char somaResiduosEmpresa[100];
+
+        snprintf(somaResiduosEmpresa, sizeof(somaResiduosEmpresa),"%s;%d;%.2f\n",
+                 listaSomaDeResiduosPorEmpresa->residuo.cnpj,
+                 listaSomaDeResiduosPorEmpresa->residuo.toneladas,
+                 listaSomaDeResiduosPorEmpresa->residuo.faturamento
+        );
+        strcat(relatorio, somaResiduosEmpresa);
+
         listaSomaDeResiduosPorEmpresa = listaSomaDeResiduosPorEmpresa->proximo;
     }
 
+    Sleep(500);
 
-    system("pause");
-    printf("\n-----------------------> SAINDO... VOID IN PROGRESS...");
-    Sleep(1500);
+    do
+        {
+            printf("\nDeseja salvar este relatorio em um arquivo?\n\n");
+            printf("[1] Sim\n");
+            printf("[2] Nao\n");
+            if (scanf("%d", &escolha) != 1)
+            {
+                while(getchar() != '\n');
+            }
+
+            switch (escolha)
+            {
+            case 1:
+                printf("Digite o nome desejado para o arquivo do relatorio: ");
+                scanf("%s", nomeDoArquivoDeRelatorio);
+                strcat(nomeDoArquivoDeRelatorio, ".txt");
+                gravarStringNoArquivo(nomeDoArquivoDeRelatorio, relatorio);
+                printf("\nRelatório salvo com sucesso!");
+                Sleep(1500);
+                relatorios();
+            case 2:
+                relatorios();
+                break;
+            default:
+                printf("\n---------  Opcao invalida! Tente novamente.  ---------\n\n");
+                system("pause");
+                break;
+            }
+        }
+        while(escolha != 2);
+
+    printf("\n-----------------------> SAINDO");
     relatorios();
 }
 
