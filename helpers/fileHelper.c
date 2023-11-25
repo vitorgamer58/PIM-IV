@@ -41,3 +41,17 @@ FILE* abrirArquivoParaGravacao(const char* nomeDoArquivo)
     return Ponteiro;
 }
 
+void gravarStringNoArquivo(const char* nomeDoArquivo, const char* stringParaGravar)
+{
+    FILE *Ponteiro = abrirOuCriarArquivo(nomeDoArquivo);
+
+    if (Ponteiro == NULL)
+    {
+        perror("Erro ao abrir o arquivo");
+        return NULL;
+    }
+
+    fprintf(Ponteiro, stringParaGravar);
+
+    fclose(Ponteiro);
+}
