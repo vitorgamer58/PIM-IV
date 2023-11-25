@@ -8,24 +8,58 @@
 #include "userRepository.h"
 #include "empresaRepositorio.h"
 #include "residuosRepositorio.h"
+#include "helpers/helpers.h"
 
 void relatorioSomaDeResiduos()
 {
-
+    ListaDeEmpresas *listaDeEmpresas;
+    ListaDeResiduos *listaDeResiduos;
+    ListaDeResiduos *listaSomaDeResiduosPorEmpresa = iniciaListaDeResiduos();
 
     system("cls");
     printf("------------------------------------------------------\n");
     printf("     TOTAL DE RESIDUOS CADASTRADADOS POR EMPRESA\n");
     printf("------------------------------------------------------\n\n");
 
+    listaDeEmpresas = buscarTodasEmpresas();
+
+    while (listaDeEmpresas != NULL)
+    {
+        listaDeResiduos = buscarResiduoPorEmpresa(listaDeEmpresas->empresa.cnpj);
+
+        int somaDeResiduosEmpresaAtual = 0;
+
+        while(listaDeResiduos != NULL)
+        {
+            somaDeResiduosEmpresaAtual += listaDeResiduos->residuo.toneladas;
+            listaDeResiduos = listaDeResiduos->proximo;
+        }
+
+        Residuo residuo;
+        strcpy(residuo.cnpj, listaDeEmpresas->empresa.cnpj);
+        residuo.toneladas = somaDeResiduosEmpresaAtual;
+        residuo.faturamento = calcularFaturamento(somaDeResiduosEmpresaAtual);
+
+        listaSomaDeResiduosPorEmpresa = insereNaListaDeResiduos(listaSomaDeResiduosPorEmpresa, residuo);
+
+        listaDeEmpresas = listaDeEmpresas->proximo;
+    }
+
+    while (listaSomaDeResiduosPorEmpresa != NULL)
+    {
+        printf("CNPJ: %s, Residuos: %d toneladas, Faturamento: %.2f\n",
+               listaSomaDeResiduosPorEmpresa->residuo.cnpj,
+               listaSomaDeResiduosPorEmpresa->residuo.toneladas,
+               listaSomaDeResiduosPorEmpresa->residuo.faturamento
+              );
+        listaSomaDeResiduosPorEmpresa = listaSomaDeResiduosPorEmpresa->proximo;
+    }
 
 
     system("pause");
     printf("\n-----------------------> SAINDO... VOID IN PROGRESS...");
     Sleep(1500);
     relatorios();
-
-
 }
 
 
@@ -46,11 +80,6 @@ void relatorioResiduosPorEmpresas()
     cnpj[strcspn(cnpj, "\n")] = 0; // Remove o caractere de nova linha
 
     listaDeResiduos = buscarResiduoPorEmpresa(cnpj);
-
-    if(listaDeResiduos->proximo == NULL)
-    {
-        //printf("UM ELEMENTO!");
-    }
 
     if(listaDeResiduos == NULL)
     {
@@ -80,6 +109,7 @@ void relatorioResiduosPorEmpresas()
         while(escolha != 2);
     }
     printf("\n");
+
     while (listaDeResiduos != NULL)
     {
         printf("\Residuos cadastrados: %d toneladas.\n", listaDeResiduos->residuo.toneladas);
