@@ -8,24 +8,58 @@
 #include "userRepository.h"
 #include "empresaRepositorio.h"
 #include "residuosRepositorio.h"
+#include "helpers/helpers.h"
 
 void relatorioSomaDeResiduos()
 {
-
+    ListaDeEmpresas *listaDeEmpresas;
+    ListaDeResiduos *listaDeResiduos;
+    ListaDeResiduos *listaSomaDeResiduosPorEmpresa = iniciaListaDeResiduos();
 
     system("cls");
     printf("------------------------------------------------------\n");
     printf("     TOTAL DE RESIDUOS CADASTRADADOS POR EMPRESA\n");
     printf("------------------------------------------------------\n\n");
 
+    listaDeEmpresas = buscarTodasEmpresas();
+
+    while (listaDeEmpresas != NULL)
+    {
+        listaDeResiduos = buscarResiduoPorEmpresa(listaDeEmpresas->empresa.cnpj);
+
+        int somaDeResiduosEmpresaAtual = 0;
+
+        while(listaDeResiduos != NULL)
+        {
+            somaDeResiduosEmpresaAtual += listaDeResiduos->residuo.toneladas;
+            listaDeResiduos = listaDeResiduos->proximo;
+        }
+
+        Residuo residuo;
+        strcpy(residuo.cnpj, listaDeEmpresas->empresa.cnpj);
+        residuo.toneladas = somaDeResiduosEmpresaAtual;
+        residuo.faturamento = calcularFaturamento(somaDeResiduosEmpresaAtual);
+
+        listaSomaDeResiduosPorEmpresa = insereNaListaDeResiduos(listaSomaDeResiduosPorEmpresa, residuo);
+
+        listaDeEmpresas = listaDeEmpresas->proximo;
+    }
+
+    while (listaSomaDeResiduosPorEmpresa != NULL)
+    {
+        printf("CNPJ: %s, Residuos: %d toneladas, Faturamento: %.2f\n",
+               listaSomaDeResiduosPorEmpresa->residuo.cnpj,
+               listaSomaDeResiduosPorEmpresa->residuo.toneladas,
+               listaSomaDeResiduosPorEmpresa->residuo.faturamento
+              );
+        listaSomaDeResiduosPorEmpresa = listaSomaDeResiduosPorEmpresa->proximo;
+    }
 
 
     system("pause");
     printf("\n-----------------------> SAINDO... VOID IN PROGRESS...");
     Sleep(1500);
     relatorios();
-
-
 }
 
 
@@ -46,11 +80,6 @@ void relatorioResiduosPorEmpresas()
     cnpj[strcspn(cnpj, "\n")] = 0; // Remove o caractere de nova linha
 
     listaDeResiduos = buscarResiduoPorEmpresa(cnpj);
-
-    if(listaDeResiduos->proximo == NULL)
-    {
-        //printf("UM ELEMENTO!");
-    }
 
     if(listaDeResiduos == NULL)
     {
@@ -80,6 +109,7 @@ void relatorioResiduosPorEmpresas()
         while(escolha != 2);
     }
     printf("\n");
+
     while (listaDeResiduos != NULL)
     {
         printf("\Residuos cadastrados: %d toneladas.\n", listaDeResiduos->residuo.toneladas);
@@ -293,9 +323,8 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
         printf("1. Cadastrar novo usuario\n");
         printf("2. Cadastrar industria\n");
         printf("3. Cadastrar residuos\n");
-        printf("4. Exibir dados da industria\n");
-        printf("5. Exibir relatorios\n");
-        printf("6. Sair\n");
+        printf("4. Exibir relatorios\n");
+        printf("5. Sair\n");
 
         printf("\nEscolha uma opcao: ");
         if (scanf("%d", &escolha) != 1)
@@ -315,11 +344,9 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
             cadastrarResiduos();
             break;
         case 4:
-            break;
-        case 5:
             relatorios();
             break;
-        case 6:
+        case 5:
             printf("\n-------------------------------> Saindo do programa...\n");
             printf("Digite qualquer tecla para fechar esta janela <-------\n\n");
             exit(0);
@@ -331,7 +358,7 @@ void renderizaMenuEDireciona() // TELA DE MENU E DIRECIONAMENTO
 
         }
     }
-    while(escolha != 6);
+    while(escolha != 5);
 }
 
 bool checarSenha(const char* senhaDoUsuario, const char* senhaDigitada)

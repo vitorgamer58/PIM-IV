@@ -39,6 +39,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="fileHelper.h" />
+		<Unit filename="helpers/helpers.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="helpers/helpers.h" />
 		<Unit filename="listas/listas.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -55,7 +59,6 @@
 		<Unit filename="usuarioRepository.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="verificadores.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
