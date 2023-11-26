@@ -4,7 +4,7 @@
 #include <stddef.h>
 
 #include "types.h"
-#include "fileHelper.h"
+#include "helpers/fileHelper.h"
 #include "listas/listas.h"
 
 bool inserirResiduo(Residuo residuo)

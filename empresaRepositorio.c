@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include "types.h"
-#include "fileHelper.h"
+#include "helpers/fileHelper.h"
 #include "listas/listas.h"
 
 bool inserirEmpresa(Empresa empresa)

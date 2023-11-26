@@ -3,18 +3,22 @@
 #include <stdbool.h>
 #include <string.h>
 #include <windows.h>
-//#include <locale.h>
+#include <locale.h>
 #include "types.h"
 #include "userRepository.h"
 #include "empresaRepositorio.h"
 #include "residuosRepositorio.h"
 #include "helpers/helpers.h"
+#include "helpers/fileHelper.h"
 
 void relatorioSomaDeResiduos()
 {
     ListaDeEmpresas *listaDeEmpresas;
     ListaDeResiduos *listaDeResiduos;
     ListaDeResiduos *listaSomaDeResiduosPorEmpresa = iniciaListaDeResiduos();
+    char relatorio[10000] = "CNPJ;Pesagem;Faturamento\n";
+    int escolha;
+    char nomeDoArquivoDeRelatorio[50];
 
     system("cls");
     printf("------------------------------------------------------\n");
@@ -51,14 +55,54 @@ void relatorioSomaDeResiduos()
                listaSomaDeResiduosPorEmpresa->residuo.cnpj,
                listaSomaDeResiduosPorEmpresa->residuo.toneladas,
                listaSomaDeResiduosPorEmpresa->residuo.faturamento
-              );
+        );
+
+        char somaResiduosEmpresa[100];
+
+        snprintf(somaResiduosEmpresa, sizeof(somaResiduosEmpresa),"%s;%d;%.2f\n",
+                 listaSomaDeResiduosPorEmpresa->residuo.cnpj,
+                 listaSomaDeResiduosPorEmpresa->residuo.toneladas,
+                 listaSomaDeResiduosPorEmpresa->residuo.faturamento
+        );
+        strcat(relatorio, somaResiduosEmpresa);
+
         listaSomaDeResiduosPorEmpresa = listaSomaDeResiduosPorEmpresa->proximo;
     }
 
+    Sleep(500);
 
-    system("pause");
-    printf("\n-----------------------> SAINDO... VOID IN PROGRESS...");
-    Sleep(1500);
+    do
+        {
+            printf("\nDeseja salvar este relatorio em um arquivo?\n\n");
+            printf("[1] Sim\n");
+            printf("[2] Nao\n");
+            if (scanf("%d", &escolha) != 1)
+            {
+                while(getchar() != '\n');
+            }
+
+            switch (escolha)
+            {
+            case 1:
+                printf("Digite o nome desejado para o arquivo do relatorio: ");
+                scanf("%s", nomeDoArquivoDeRelatorio);
+                strcat(nomeDoArquivoDeRelatorio, ".txt");
+                gravarStringNoArquivo(nomeDoArquivoDeRelatorio, relatorio);
+                printf("\nRelatorio salvo com sucesso!");
+                Sleep(1500);
+                relatorios();
+            case 2:
+                relatorios();
+                break;
+            default:
+                printf("\n---------  Opcao invalida! Tente novamente.  ---------\n\n");
+                system("pause");
+                break;
+            }
+        }
+        while(escolha != 2);
+
+    printf("\n-----------------------> SAINDO");
     relatorios();
 }
 
@@ -68,6 +112,10 @@ void relatorioResiduosPorEmpresas()
     char cnpj[16];
     int escolha;
     ListaDeResiduos *listaDeResiduos;
+
+    char relatorio[10000] = "CNPJ;Pesagem;\n";
+    int escolhaDois;
+    char nomeDoArquivoDeRelatorio[50];
 
     system("cls");
     printf("------------------------------------------------------\n");
@@ -113,12 +161,50 @@ void relatorioResiduosPorEmpresas()
     while (listaDeResiduos != NULL)
     {
         printf("\Residuos cadastrados: %d toneladas.\n", listaDeResiduos->residuo.toneladas);
+
+        char somaResiduosEmpresa[100];
+
+        snprintf(somaResiduosEmpresa, sizeof(somaResiduosEmpresa),"%s;%d\n",
+                 listaDeResiduos->residuo.cnpj,
+                 listaDeResiduos->residuo.toneladas
+        );
+
+        strcat(relatorio, somaResiduosEmpresa);
+
         listaDeResiduos = listaDeResiduos->proximo;
     }
     printf("\n------------------------------------------------------\n");
-    printf("\n");
-    system("pause");
-    relatorios();
+
+    do
+        {
+            printf("\nDeseja salvar este relatorio em um arquivo?\n\n");
+            printf("[1] Sim\n");
+            printf("[2] Nao\n");
+            if (scanf("%d", &escolhaDois) != 1)
+            {
+                while(getchar() != '\n');
+            }
+
+            switch (escolhaDois)
+            {
+            case 1:
+                printf("Digite o nome desejado para o arquivo do relatorio: ");
+                scanf("%s", nomeDoArquivoDeRelatorio);
+                strcat(nomeDoArquivoDeRelatorio, ".txt");
+                gravarStringNoArquivo(nomeDoArquivoDeRelatorio, relatorio);
+                printf("\nRelatorio salvo com sucesso!");
+                Sleep(1500);
+                relatorios();
+            case 2:
+                relatorios();
+                break;
+            default:
+                printf("\n---------  Opcao invalida! Tente novamente.  ---------\n\n");
+                system("pause");
+                break;
+            }
+        }
+        while(escolhaDois != 2);
 }
 
 void relatorios()

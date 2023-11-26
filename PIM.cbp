@@ -35,10 +35,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="empresaRepositorio.h" />
-		<Unit filename="fileHelper.c">
+		<Unit filename="helpers/fileHelper.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="fileHelper.h" />
+		<Unit filename="helpers/fileHelper.h" />
 		<Unit filename="helpers/helpers.c">
 			<Option compilerVar="CC" />
 		</Unit>
