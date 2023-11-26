@@ -22,7 +22,7 @@ void relatorioSomaDeResiduos()
 
     system("cls");
     printf("------------------------------------------------------\n");
-    printf("     TOTAL DE RESIDUOS CADASTRADADOS POR EMPRESA\n");
+    printf("    TOTAL DE RESIDUOS CADASTRADADOS E FATURAMENTO\n");
     printf("------------------------------------------------------\n\n");
 
     listaDeEmpresas = buscarTodasEmpresas();
@@ -51,7 +51,7 @@ void relatorioSomaDeResiduos()
 
     while (listaSomaDeResiduosPorEmpresa != NULL)
     {
-        printf("CNPJ: %s, Residuos: %d toneladas, Faturamento: %.2f\n",
+        printf("CNPJ: %s\nResiduos: %d toneladas\nFaturamento: R$%.2f\n\n",
                listaSomaDeResiduosPorEmpresa->residuo.cnpj,
                listaSomaDeResiduosPorEmpresa->residuo.toneladas,
                listaSomaDeResiduosPorEmpresa->residuo.faturamento
@@ -73,7 +73,7 @@ void relatorioSomaDeResiduos()
 
     do
         {
-            printf("\nDeseja salvar este relatorio em um arquivo?\n\n");
+            printf("---- Deseja salvar este relatorio em um arquivo? -----\n\n");
             printf("[1] Sim\n");
             printf("[2] Nao\n");
             if (scanf("%d", &escolha) != 1)
@@ -84,12 +84,15 @@ void relatorioSomaDeResiduos()
             switch (escolha)
             {
             case 1:
+                printf("\n------------------------------------------------------\n");
+                printf("           SALVANDO RELATORIO EM UM ARQUIVO\n");
+                printf("------------------------------------------------------\n\n");
                 printf("Digite o nome desejado para o arquivo do relatorio: ");
                 scanf("%s", nomeDoArquivoDeRelatorio);
                 strcat(nomeDoArquivoDeRelatorio, ".txt");
                 gravarStringNoArquivo(nomeDoArquivoDeRelatorio, relatorio);
-                printf("\nRelatorio salvo com sucesso!");
-                Sleep(1500);
+                printf("\n------------ RELATORIO SALVO COM SUCESSO!! ------------\n");
+                Sleep(2000);
                 relatorios();
             case 2:
                 relatorios();
@@ -173,11 +176,10 @@ void relatorioResiduosPorEmpresas()
 
         listaDeResiduos = listaDeResiduos->proximo;
     }
-    printf("\n------------------------------------------------------\n");
 
     do
         {
-            printf("\nDeseja salvar este relatorio em um arquivo?\n\n");
+            printf("\n---- Deseja salvar este relatorio em um arquivo? -----\n\n");
             printf("[1] Sim\n");
             printf("[2] Nao\n");
             if (scanf("%d", &escolhaDois) != 1)
@@ -188,12 +190,15 @@ void relatorioResiduosPorEmpresas()
             switch (escolhaDois)
             {
             case 1:
-                printf("Digite o nome desejado para o arquivo do relatorio: ");
+                printf("\n------------------------------------------------------\n");
+                printf("           SALVANDO RELATORIO EM UM ARQUIVO\n");
+                printf("------------------------------------------------------\n\n");
+                printf("Digite o nome desejado para o arquivo do relatorio:\n");
                 scanf("%s", nomeDoArquivoDeRelatorio);
                 strcat(nomeDoArquivoDeRelatorio, ".txt");
                 gravarStringNoArquivo(nomeDoArquivoDeRelatorio, relatorio);
-                printf("\nRelatorio salvo com sucesso!");
-                Sleep(1500);
+                printf("\n------------ RELATORIO SALVO COM SUCESSO!! ------------\n");
+                Sleep(2000);
                 relatorios();
             case 2:
                 relatorios();
@@ -220,7 +225,7 @@ void relatorios()
     {
         printf("\nEscolha uma das opcoes abaixo:\n\n");
         printf("1. Relatorio de residuos por empresa\n");
-        printf("2. Total de residuos cadastrados por empresa\n");
+        printf("2. Total de residuos cadastrados e faturamento\n");
         printf("3. Voltar ao menu principal\n");
         if (scanf("%d", &escolha) != 1)
         {
