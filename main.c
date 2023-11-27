@@ -326,7 +326,9 @@ void cadastrarUsuario() // TELA DE CADASTRO DE USU�RIOS
     printf("Agora digite a senha: ");
     scanf("%s", senha);
 
-    bool usuarioFoiCadastrado=inserirUsuario(nomeDeUsuario, senha);
+    char* senhaCriptografada = criptografar(senha);
+
+    bool usuarioFoiCadastrado=inserirUsuario(nomeDeUsuario, senhaCriptografada);
 
     if (usuarioFoiCadastrado)
     {
@@ -474,6 +476,8 @@ void logar(char* nomeDeUsuario, char* senha) // FUN��O E TELAS DE LOGIN
 
     usuario = buscarUsuario(nomeDeUsuario);
 
+    char* senhaDescriptografada = descriptografar(usuario.senha);
+
     if(!usuario.isValid)
     {
         printf("\n-----------  ERRO: usuario nao encontrado  -----------\n\n");
@@ -487,7 +491,7 @@ void logar(char* nomeDeUsuario, char* senha) // FUN��O E TELAS DE LOGIN
         return;
     }
 
-    if(checarSenha(usuario.senha, senha))
+    if(checarSenha(senhaDescriptografada, senha))
     {
         printf("\n--------------   LOGADO COM SUCESSO!!   --------------");
         Sleep(1200);
